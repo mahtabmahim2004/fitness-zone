@@ -1,0 +1,72 @@
+.topbar {
+  height: 70px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .08);
+  margin-left: 260px;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.menu-btn {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.topbar-left h4 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.icon-btn {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.admin-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-icon {
+  font-size: 40px;
+  color: #0d6efd;
+}
+
+.admin-info h6 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.admin-info small {
+  color: gray;
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    margin-left: 220px;
+    padding: 0 20px;
+  }
+
+  .topbar-left h4 {
+    font-size: 18px;
+  }
+}

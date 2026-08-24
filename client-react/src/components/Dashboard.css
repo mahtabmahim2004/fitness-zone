@@ -1,0 +1,36 @@
+.app-layout {
+  display: flex;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 260px;
+}
+
+.dashboard-content {
+  padding: 30px;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.card-header {
+  font-weight: bold;
+}
+
+.table th {
+  width: 55%;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 220px;
+  }
+
+  .dashboard-content {
+    padding: 20px;
+  }
+}
