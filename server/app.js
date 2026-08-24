@@ -1,23 +1,26 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 // ==========================
 // Load Environment Variables
 // ==========================
 dotenv.config();
 
-const cors = require("cors");
 const pool = require("./config/db");
 
 console.log("===== APP.JS LOADED =====");
 
-// Debug .env
+// ==========================
+// Debug Environment Variables
+// ==========================
 console.log({
   DB_HOST: process.env.DB_HOST,
   DB_PORT: process.env.DB_PORT,
   DB_NAME: process.env.DB_NAME,
   DB_USER: process.env.DB_USER,
   DB_PASSWORD: process.env.DB_PASSWORD ? "Loaded" : "Undefined",
+  PORT: process.env.PORT || 5000,
 });
 
 const app = express();
@@ -28,7 +31,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ==========================
 // Request Logger
+// ==========================
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   next();
@@ -76,7 +81,7 @@ app.get("/", async (req, res) => {
 
     res.send("✅ Gym Management System Backend Running");
   } catch (error) {
-    console.error(error);
+    console.error("Database Error:", error);
 
     res.status(500).send("❌ Database Connection Failed");
   }
@@ -86,7 +91,7 @@ app.get("/", async (req, res) => {
 // Global Error Handler
 // ==========================
 app.use((err, req, res, next) => {
-  console.error(err);
+  console.error("Global Error:", err);
 
   res.status(500).json({
     success: false,
@@ -97,8 +102,11 @@ app.use((err, req, res, next) => {
 // ==========================
 // Start Server
 // ==========================
+// Render provides PORT through environment variables.
+// Locally it will use port 5000.
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+// 0.0.0.0 allows Render to access the application.
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
